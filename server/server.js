@@ -30,6 +30,7 @@ fs.writeFile("./chirps.json", chirps, (err) => {
         return;
     };
     console.log("File has been created");
+    console.log(chirps);
 });
 
 // Content of the file -> hello
