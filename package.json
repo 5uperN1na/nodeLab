@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/5uperN1na/nodeLab/issues"
   },
-  "homepage": "https://github.com/5uperN1na/nodeLab#readme"
+  "homepage": "https://github.com/5uperN1na/nodeLab#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
