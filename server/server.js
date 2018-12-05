@@ -1,36 +1,38 @@
 const path = require('path');
 const fs = require('fs');
-//const request = require('request');
+const request = require('request');
 
 
-//let dataPath = path.join(__dirname, '../chirps.json');
+//PART 1
+//let chirps = ["chirp1", "chirp2", "chirp3", "chirp4", "chirp5"];
 
-
-let chirps = ["chirp1", "chirp2", "chirp3", "chirp4", "chirp5"];
-
-//let data = JSON.stringify(chirps);  
-//fs.writeFileSync(dataPath, data); 
-//fs.writeFileSync(dataPath, data); 
-
-//let data = JSON.stringify(chirps, null, 2);
-
-//fs.writeFile(dataPath, data, (err) => {
-  //  if (err) throw err;
-    //console.log('Data written to file');
+//fs.writeFile("./chirps.json", chirps, (err) => {
+   // if (err) {
+       // console.error(err);
+       // return;
+   // };
+   // console.log("File has been created");
+   // console.log(chirps);
 //});
 
-//console.log('This is after the write call');
+//Part 2
 
-//var fs = require("fs");
-//var fileContent = "hello";
+let dataPath = path.join(__dirname, '../data.json');
 
-fs.writeFile("./chirps.json", chirps, (err) => {
-    if (err) {
-        console.error(err);
-        return;
-    };
-    console.log("File has been created");
-    console.log(chirps);
+request('https://www.reddit.com/r/popular.json', (err, res, body) => {
+
+    if (err) console.log(err);
+
+    console.log(res);
+
+    //JSON.parse(body).data.children.forEach(item => {
+        //console.log(item.data.title);
+
+    //});
+
+    //fs.writeFile(dataPath, res.body, err => {
+        //if (err) console.log(err);
+
+    //});
+
 });
-
-// Content of the file -> hello
