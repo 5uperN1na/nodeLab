@@ -23,16 +23,18 @@ request('https://www.reddit.com/r/popular.json', (err, res, body) => {
 
     if (err) console.log(err);
 
-    console.log(res);
+    //console.log(res);
 
-    //JSON.parse(body).data.children.forEach(item => {
-        //console.log(item.data.title);
+    JSON.parse(body).data.children.forEach(item => {
+        console.log(item.data.title);
+        console.log(item.data.author);
+        console.log(item.data.url);
 
-    //});
+    });
 
-    //fs.writeFile(dataPath, res.body, err => {
-        //if (err) console.log(err);
+    fs.writeFile(dataPath, res.body, err => {
+        if (err) console.log(err);
 
-    //});
+    });
 
 });
