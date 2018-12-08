@@ -6,8 +6,8 @@ const path = require('path');
 // accessing the file system
 const fs = require('fs');
 
-//const request = require('request-promise');
-const request = require('request');
+//requesting requests
+const request = require('request-promise');
 
 //establish data path to file where the array will wrtie to
 let dataPath = path.join(__dirname, '/popular-articles.json');
