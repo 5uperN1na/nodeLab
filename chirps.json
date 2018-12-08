@@ -1,1 +1,7 @@
-chirp1 ,chirp2,chirp3,chirp4,chirp5
+{
+  "chirp1": "beep",
+  "chirp2": "beep, beep",
+  "chirp3": "beep, beep, beep",
+  "chirp4": "beep, beep, beep, beep",
+  "chirp5": "beep, beep, beep, beep, beep"
+}
