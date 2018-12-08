@@ -1,41 +1,46 @@
-//Part 2
+//Part 2 of node lab assignment
 
-let dataPath = path.join(__dirname, '../popular-articles.json');
+// building data path
+const path = require('path');
 
+// accessing the file system
+const fs = require('fs');
+
+//const request = require('request-promise');
+const request = require('request');
+
+//establish data path to file where the array will wrtie to
+let dataPath = path.join(__dirname, '/popular-articles.json');
+
+//request to go out to site
 request('https://www.reddit.com/r/popular.json', (err, res, body) => {
 
+    //console log error if error exists
     if (err) console.log(err);
 
-    console.log(res);
-
-
+    //create array to hold title, url and author 
     let articleInfo = [];
 
+    //parse received data and loop through title, url and author
+    JSON.parse(body).data.children.forEach(item => {
 
-    fs.writeFile(dataPath, res.body, err => {
+        let articleDetails = {
+            "title": item.data.title,
+            "url": item.data.url,
+            "author": item.data.author
+        }
+
+        //push each title/url/author string onto the array
+        articleInfo.push(JSON.stringify(articleDetails));
+
+    })
+
+    //write to the popular-articles.json file
+    fs.writeFile(dataPath, JSON.stringify(articleInfo, null, 2), err => {
+        //output error message to screen if found
         if (err) console.log(err);
-
-        JSON.parse(body).data.children.forEach(item => {
-            //console.log(item.data.title);
-            // console.log(item.data.author);
-            //console.log(item.data.url);
-
-
-            //articleInfo.push(item.data.title);
-            //articleInfo.push(item.data.author);
-            // articleInfo.push(item.data.url);
-            //console.log(articleInfo);
-
-
-
-            let articleDetails = {
-                "title": item.data.title,
-                "url": item.data.url,
-                "author": item.data.author
-            }
-            articleInfo.push(JSON.stringify(articleDetails));
-        });
 
     });
 
 });
+
