@@ -10,32 +10,34 @@ const fs = require('fs');
 const request = require('request-promise');
 
 //making http request
-const http = require('http');     
+const http = require('http');
 
 //making https requests
-const https = require('https');    
+const https = require('https');
 
 //request to go out to site
 request('https://www.reddit.com/r/popular.json', (err, res, body) => {
 
-    let images = JSON.parse(res.body).data.children.map((item) => {
+    let pictures = JSON.parse(body).data.children.forEach(item => {
 
-        let ext = path.extname(item.data.url);
-        if (ext === '.jpg'|| ext === '.gif') {
-            
+        //let images = JSON.parse(res.body).data.children.map((item) => {
+
+        let fileExt = path.extname(item.data.url);
+        if (fileExt === '.gif' || fileExt === '.jpg') {
+
             let id = item.data.id;
-            console.log(item.data.id);
-            let mediaPath = path.join(__dirname, './downloads', id + ext);
+            //console.log(item.data.id);
+            let mediaPath = path.join(__dirname, './downloads', id + fileExt);
             const options = {
                 url: item.data.url,
                 encoding: null
-              };
-              
+            };
+
             request.get(options)
                 .then(function (res) {
                     fs.writeFileSync(mediaPath, res);
-                });            
-            
+                });
+
         }
 
     })
